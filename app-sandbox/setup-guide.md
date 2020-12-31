@@ -22,3 +22,7 @@ For the dependancies we don't pass anything, and we will simply add them by hand
 
 The NX schematic for jav is imporperly set some of the properties, which have to be adjusted *(groupId, name and corresponding main class)* \
 Check details of this commit (where this line was added) to see what has to be adjusted.
+
+After this, I've copied over the entire API from [this repository](https://github.com/Kwandes/sonito). You can visit it for details on how the api was created. \
+
+The java-api app requires one environemnt variable, **APP_SANDBOX_JDBC_URL**, which follows a format of `jdbc:mysql://username:password@url:port/app_sandbox?serverTimezone=UTC&characterEncoding=UTF-8`

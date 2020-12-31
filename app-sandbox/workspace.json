@@ -1,7 +1,50 @@
 {
   "version": 2,
-
-  "projects": {},
+  "projects": {
+    "java-api": {
+      "projectType": "application",
+      "root": "apps/java-api",
+      "sourceRoot": "apps/java-api/src",
+      "targets": {
+        "run": {
+          "executor": "@nxrocks/nx-spring-boot:run",
+          "options": {
+            "root": "apps/java-api"
+          }
+        },
+        "serve": {
+          "executor": "@nxrocks/nx-spring-boot:serve",
+          "options": {
+            "root": "apps/java-api"
+          }
+        },
+        "buildJar": {
+          "executor": "@nxrocks/nx-spring-boot:buildJar",
+          "options": {
+            "root": "apps/java-api"
+          }
+        },
+        "buildWar": {
+          "executor": "@nxrocks/nx-spring-boot:buildWar",
+          "options": {
+            "root": "apps/java-api"
+          }
+        },
+        "buildImage": {
+          "executor": "@nxrocks/nx-spring-boot:buildImage",
+          "options": {
+            "root": "apps/java-api"
+          }
+        },
+        "buildInfo": {
+          "executor": "@nxrocks/nx-spring-boot:buildInfo",
+          "options": {
+            "root": "apps/java-api"
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "defaultCollection": "@nrwl/workspace"
   }

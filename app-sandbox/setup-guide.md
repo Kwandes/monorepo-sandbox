@@ -19,3 +19,6 @@ ArtifactId is the name of the app, **api** \
 For the package name, we combine the domain and the app name **dev.hotdeals.api** \
 Description is quite self explanatory \
 For the dependancies we don't pass anything, and we will simply add them by hand. Why? Because I'm lazy and this is less error-prone
+
+The NX schematic for jav is imporperly set some of the properties, which have to be adjusted *(groupId, name and corresponding main class)* \
+Check details of this commit (where this line was added) to see what has to be adjusted.

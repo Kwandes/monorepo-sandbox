@@ -35,6 +35,13 @@
     "react-student-app-e2e": {
       "tags": [],
       "implicitDependencies": ["react-student-app"]
+    },
+    "angular-student-app": {
+      "tags": []
+    },
+    "angular-student-app-e2e": {
+      "tags": [],
+      "implicitDependencies": ["angular-student-app"]
     }
   }
 }

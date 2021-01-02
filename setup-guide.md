@@ -47,3 +47,8 @@ Requires one new dependancy, `react-toastify` `npm install --save-dev react-toas
 ### Angular Project Setup
 Navigate into the NX workspace directory `cd app-sandbox` \
 Install a schematic for React `npm install --save-dev @nrwl/angular`
+
+Generate a Anmgular app `nx generate @nrwl/angular:app angular-student-app` \
+When prompted to, choose the following: \
+Stylesheet format: **CSS** \
+Router: **Yes** *(We will need it in the future anyway, might as well add it)*

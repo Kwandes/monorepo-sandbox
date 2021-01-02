@@ -153,6 +153,135 @@
           }
         }
       }
+    },
+    "angular-student-app": {
+      "projectType": "application",
+      "root": "apps/angular-student-app",
+      "sourceRoot": "apps/angular-student-app/src",
+      "prefix": "app-sandbox",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/angular-student-app",
+            "index": "apps/angular-student-app/src/index.html",
+            "main": "apps/angular-student-app/src/main.ts",
+            "polyfills": "apps/angular-student-app/src/polyfills.ts",
+            "tsConfig": "apps/angular-student-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/angular-student-app/src/favicon.ico",
+              "apps/angular-student-app/src/assets"
+            ],
+            "styles": [
+              "apps/angular-student-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/angular-student-app/src/environments/environment.ts",
+                  "with": "apps/angular-student-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "angular-student-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "angular-student-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "angular-student-app:build"
+          }
+        },
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/angular-student-app/tsconfig.app.json",
+              "apps/angular-student-app/tsconfig.spec.json",
+              "apps/angular-student-app/tsconfig.editor.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/angular-student-app/**/*"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/angular-student-app"
+          ],
+          "options": {
+            "jestConfig": "apps/angular-student-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "angular-student-app-e2e": {
+      "root": "apps/angular-student-app-e2e",
+      "sourceRoot": "apps/angular-student-app-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/angular-student-app-e2e/cypress.json",
+            "tsConfig": "apps/angular-student-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "angular-student-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-student-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/angular-student-app-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/angular-student-app-e2e/**/*"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -172,6 +301,16 @@
         "style": "scss",
         "linter": "eslint"
       }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "css"
     }
   },
   "defaultProject": "react-student-app"

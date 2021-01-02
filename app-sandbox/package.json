@@ -30,6 +30,7 @@
   "devDependencies": {
     "@nrwl/cli": "11.0.20",
     "@nrwl/nx-cloud": "latest",
+    "@nrwl/react": "^11.0.20",
     "@nrwl/tao": "11.0.20",
     "@nrwl/workspace": "11.0.20",
     "@nxrocks/nx-spring-boot": "^1.2.0",

@@ -19,12 +19,7 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "accessToken": "ZWE5NmQ5NzAtNDJlMy00MmE3LWFhMWEtZDk4MzMwOTY5OTdkfHJlYWQtd3JpdGU=",
-        "cacheableOperations": [
-          "build",
-          "test",
-          "lint",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "test", "lint", "e2e"],
         "canTrackAnalytics": false,
         "showUsageWarnings": true
       }
@@ -33,6 +28,13 @@
   "projects": {
     "java-api": {
       "tags": []
+    },
+    "react-student-app": {
+      "tags": []
+    },
+    "react-student-app-e2e": {
+      "tags": [],
+      "implicitDependencies": ["react-student-app"]
     }
   }
 }

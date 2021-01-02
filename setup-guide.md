@@ -30,3 +30,8 @@ The java-api app requires one environemnt variable, **APP_SANDBOX_JDBC_URL**, wh
 ### React Project Setup
 Navigate into the NX workspace directory `cd app-sandbox` \
 Install a schematic for React `npm install --save-dev @nrwl/react`
+
+Generate a React app `nx generate @nrwl/react:app react-student-app`
+When prompted to, choose the following:
+Stylesheet format: **SASS**
+Router: **Yes** *(We will need it in the future anyway, might as well add it)*

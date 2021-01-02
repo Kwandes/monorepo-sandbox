@@ -1,0 +1,153 @@
+#StudentList
+{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    max-height: 80vh;
+    width: fit-content;
+    border-radius: 10px;
+    margin: 2.5vw;
+    padding: 1vh 0;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-base-color: #282c34;
+}
+
+#StudentList .StudentInfoRow
+{
+    border: 1px rebeccapurple solid;
+    border-radius: 6px;
+    padding: 1vh 1vw;
+    margin: 1vh 1vw;
+
+    font-size: 16px;
+    color: white;
+    text-align: left;
+}
+
+#StudentList .StudentInfo
+{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    text-decoration: none;
+    margin: 0 1vw;
+    color: white;
+}
+
+#StudentList label
+{
+}
+
+
+#StudentList li::marker
+{
+    display: flex;
+}
+
+#StudentList li
+{
+    margin: 1vh;
+
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    /*linear-gradient(to right, salmon , beige, darkcyan, beige, mediumpurple, beige, darkcyan, beige, salmon)*/
+    background: linear-gradient(180deg, orangered, indianred, darkorange, yellow, greenyellow, lawngreen, deepskyblue, darkslateblue, rebeccapurple);
+    box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, .25), inset -2px -2px 2px rgba(0, 0, 0, .25);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+#StudentList .StudentInfoRow:nth-child(1n)
+{
+    background-color: rgba(255, 69, 0, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(2n)
+{
+    background-color: rgba(205, 92, 92, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(3n)
+{
+    background-color: rgba(255, 140, 0, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(4n)
+{
+    background-color: rgba(255, 255, 0, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(5n)
+{
+    background-color: rgba(173, 255, 47, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(6n)
+{
+    background-color: rgba(124, 252, 0, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(7n)
+{
+    background-color: rgba(0, 191, 255, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(8n)
+{
+    background-color: rgba(72, 61, 139, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(9n)
+{
+    background-color: rgba(102, 51, 153, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(10n)
+{
+    background-color: rgba(72, 61, 139, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(11n)
+{
+    background-color: rgba(0, 191, 255, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(12n)
+{
+    background-color: rgba(124, 252, 0, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(13n)
+{
+    background-color: rgba(173, 255, 47, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(14n)
+{
+    background-color: rgba(255, 255, 0, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(15n)
+{
+    background-color: rgba(255, 140, 0, 0.25);
+}
+
+#StudentList .StudentInfoRow:nth-child(16n)
+{
+    background-color: rgba(205, 92, 92, 0.25);
+}

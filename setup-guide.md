@@ -31,10 +31,15 @@ The java-api app requires one environemnt variable, **APP_SANDBOX_JDBC_URL**, wh
 Navigate into the NX workspace directory `cd app-sandbox` \
 Install a schematic for React `npm install --save-dev @nrwl/react`
 
-Generate a React app `nx generate @nrwl/react:app react-student-app`
-When prompted to, choose the following:
-Stylesheet format: **SASS**
+Generate a React app `nx generate @nrwl/react:app react-student-app` \
+When prompted to, choose the following: \
+Stylesheet format: **SASS** \
 Router: **Yes** *(We will need it in the future anyway, might as well add it)*
 
-Update the package.json of the workspace with new scripts. Allows things like serving the application to be done via npm
+Update the package.json of the workspace with new scripts. Allows things like serving the application to be done via npm \
 Update the test script to run tests for all projects instead of just the default one
+
+Copy the react app code from [this repository](https://github.com/Kwandes/sonito). \
+Requires one new dependancy, `react-toastify` `npm install --save-dev react-toastify`
+
+*The app actually uses css. Future apps would be generated with css instead of scss*

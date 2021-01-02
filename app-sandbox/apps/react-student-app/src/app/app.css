@@ -1,0 +1,22 @@
+.App-header
+{
+    text-align: center;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+
+    background: salmon; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, salmon, beige, darkcyan, beige, mediumpurple, beige, darkcyan, beige, salmon); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, salmon, beige, darkcyan, beige, mediumpurple, beige, darkcyan, beige, salmon); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, salmon, beige, darkcyan, beige, mediumpurple, beige, darkcyan, beige, salmon); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, salmon, beige, darkcyan, beige, mediumpurple, beige, darkcyan, beige, salmon); /* Standard syntax (must be last) */
+}
+
+body {
+    margin:0;
+}

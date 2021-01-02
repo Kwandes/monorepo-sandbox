@@ -1,0 +1,49 @@
+#StudentContainer
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    min-height: 100px;
+    width: fit-content;
+    min-width: 200px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 0.5vw;
+    padding: 2.5vw;
+    margin: 2.5vw;
+}
+
+#StudentContainer input, #StudentContainer #SupervisorSelect
+{
+    border: none;
+    background-color: mediumpurple;
+    color: white;
+    margin: 1vw 0.5vw;
+    padding: 0.25vw;
+    border-bottom: 3px solid darkred;
+    width: 90%;
+}
+
+#StudentContainer input::placeholder
+{
+    color: white;
+}
+
+#StudentContainer #CreateStudentBtn
+{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 2vw;
+    padding: 0.5vw;
+    background-color: darkslateblue;
+    border-bottom: none;
+    border-radius: 6px;
+}
+
+#StudentContainer #CreateStudentBtn:hover
+{
+    transform: scale(1.1);
+    box-shadow: none;
+}
+

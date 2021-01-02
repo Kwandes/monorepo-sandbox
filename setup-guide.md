@@ -35,3 +35,6 @@ Generate a React app `nx generate @nrwl/react:app react-student-app`
 When prompted to, choose the following:
 Stylesheet format: **SASS**
 Router: **Yes** *(We will need it in the future anyway, might as well add it)*
+
+Update the package.json of the workspace with new scripts. Allows things like serving the application to be done via npm
+Update the test script to run tests for all projects instead of just the default one

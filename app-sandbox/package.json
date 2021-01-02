@@ -5,8 +5,12 @@
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
+    "start:java-api": "nx serve java-api",
+    "start:react-student-app": "nx serve react-student-app",
     "build": "nx build",
-    "test": "nx test",
+    "build:java-api": "nx build java-api",
+    "build:react-student-app": "nx build react-student-app",
+    "test": "nx run-many --all --target=test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
     "affected:apps": "nx affected:apps",

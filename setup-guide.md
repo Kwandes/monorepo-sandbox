@@ -43,3 +43,7 @@ Copy the react app code from [this repository](https://github.com/Kwandes/sonito
 Requires one new dependancy, `react-toastify` `npm install --save-dev react-toastify`
 
 *The app actually uses css. Future apps would be generated with css instead of scss*
+
+### Angular Project Setup
+Navigate into the NX workspace directory `cd app-sandbox` \
+Install a schematic for React `npm install --save-dev @nrwl/angular`

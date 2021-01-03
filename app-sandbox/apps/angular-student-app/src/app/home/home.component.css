@@ -1,0 +1,19 @@
+#home
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+#left
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: c;
+}
+
+#left h6
+{
+    margin: 0;
+}

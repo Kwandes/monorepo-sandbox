@@ -282,6 +282,171 @@
           }
         }
       }
+    },
+    "test-java-app": {
+      "projectType": "application",
+      "root": "apps/test-java-app",
+      "sourceRoot": "apps/test-java-app/src",
+      "targets": {
+        "run": {
+          "executor": "@nxrocks/nx-spring-boot:run",
+          "options": {
+            "root": "apps/test-java-app"
+          }
+        },
+        "serve": {
+          "executor": "@nxrocks/nx-spring-boot:serve",
+          "options": {
+            "root": "apps/test-java-app"
+          }
+        },
+        "test": {
+          "executor": "@nxrocks/nx-spring-boot:test",
+          "options": {
+            "root": "apps/test-java-app"
+          }
+        },
+        "clean": {
+          "executor": "@nxrocks/nx-spring-boot:clean",
+          "options": {
+            "root": "apps/test-java-app"
+          }
+        },
+        "buildJar": {
+          "executor": "@nxrocks/nx-spring-boot:buildJar",
+          "options": {
+            "root": "apps/test-java-app"
+          }
+        },
+        "buildWar": {
+          "executor": "@nxrocks/nx-spring-boot:buildWar",
+          "options": {
+            "root": "apps/test-java-app"
+          }
+        },
+        "buildImage": {
+          "executor": "@nxrocks/nx-spring-boot:buildImage",
+          "options": {
+            "root": "apps/test-java-app"
+          }
+        },
+        "buildInfo": {
+          "executor": "@nxrocks/nx-spring-boot:buildInfo",
+          "options": {
+            "root": "apps/test-java-app"
+          }
+        }
+      }
+    },
+    "test-react-app": {
+      "root": "apps/test-react-app",
+      "sourceRoot": "apps/test-react-app/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/test-react-app",
+            "index": "apps/test-react-app/src/index.html",
+            "main": "apps/test-react-app/src/main.js",
+            "polyfills": "apps/test-react-app/src/polyfills.js",
+            "tsConfig": "apps/test-react-app/tsconfig.app.json",
+            "assets": [
+              "apps/test-react-app/src/favicon.ico",
+              "apps/test-react-app/src/assets"
+            ],
+            "styles": [
+              "apps/test-react-app/src/styles.css"
+            ],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/test-react-app/src/environments/environment.js",
+                  "with": "apps/test-react-app/src/environments/environment.prod.js"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "test-react-app:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "test-react-app:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/test-react-app/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/test-react-app"
+          ],
+          "options": {
+            "jestConfig": "apps/test-react-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "test-react-app-e2e": {
+      "root": "apps/test-react-app-e2e",
+      "sourceRoot": "apps/test-react-app-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/test-react-app-e2e/cypress.json",
+            "tsConfig": "apps/test-react-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "test-react-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "test-react-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/test-react-app-e2e/**/*.js"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

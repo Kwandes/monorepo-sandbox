@@ -16,7 +16,7 @@
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
     "affected:apps": "nx affected:apps",
-    "affected:libs": "nx affected:libs",
+    "affected:libs": "nx affected:libss",
     "affected:build": "nx affected:build",
     "affected:e2e": "nx affected:e2e",
     "affected:test": "nx affected:test",

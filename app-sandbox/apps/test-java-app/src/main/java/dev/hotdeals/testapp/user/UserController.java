@@ -1,16 +1,21 @@
 package dev.hotdeals.testapp.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class UserController
 {
-  @GetMapping("/")
-  public ResponseEntity<String> index()
+  @Autowired
+  UserService userService;
+
+  @GetMapping("/user")
+  @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
+  public User getUser() throws Exception
   {
-    return new ResponseEntity<>("yeet", HttpStatus.I_AM_A_TEAPOT);
+    return userService.getUser(1);
   }
 }

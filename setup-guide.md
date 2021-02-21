@@ -2,8 +2,8 @@
 This file describes the setup process of the repository, with the commands and steps needed to succesffuly recreate it
 
 ## Workspace setup
-Create a new workspace in the root folder of the repository
-`npx create-nx-workspace@latest app-sandbox`
+Create a new workspace within the root folder of the repository
+Run `npx create-nx-workspace@latest webstore` from outside of the repository root directory _(it will create the workspace within the webstore directory)_
 
 ### Java Project setup
 *[guide](https://www.linkedin.com/pulse/integrating-spring-boot-application-inside-nx-workspace-tine-kondo/)* \

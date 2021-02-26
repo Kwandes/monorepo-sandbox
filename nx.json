@@ -1,19 +1,14 @@
 {
-  "npmScope": "app-sandbox",
-  "affected": {
-    "defaultBase": "master"
-  },
   "implicitDependencies": {
     "workspace.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "app-sandbox",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
@@ -26,29 +21,9 @@
     }
   },
   "projects": {
-    "java-api": {
-      "tags": []
-    },
-    "react-student-app": {
-      "tags": []
-    },
-    "react-student-app-e2e": {
-      "tags": [],
-      "implicitDependencies": ["react-student-app"]
-    },
-    "angular-student-app": {
-      "tags": []
-    },
-    "angular-student-app-e2e": {
-      "tags": [],
-      "implicitDependencies": ["angular-student-app"]
-    },
-    "test-java-app": {
-      "tags": []
-    },
-    "test-react-app": {
-      "tags": []
-    },
+    "java-api": { "tags": [] },
+    "test-java-app": { "tags": [] },
+    "test-react-app": { "tags": [] },
     "test-react-app-e2e": {
       "tags": [],
       "implicitDependencies": ["test-react-app"]

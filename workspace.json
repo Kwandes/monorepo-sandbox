@@ -1,5 +1,19 @@
 {
   "version": 2,
+  "cli": { "defaultCollection": "@nrwl/react" },
+  "generators": {
+    "@nrwl/react": {
+      "application": { "style": "scss", "linter": "eslint", "babel": true },
+      "component": { "style": "scss" },
+      "library": { "style": "scss", "linter": "eslint" }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": { "unitTestRunner": "jest" },
+    "@nrwl/angular:component": { "style": "css" }
+  },
   "projects": {
     "java-api": {
       "projectType": "application",
@@ -8,278 +22,27 @@
       "targets": {
         "run": {
           "executor": "@nxrocks/nx-spring-boot:run",
-          "options": {
-            "root": "apps/java-api"
-          }
+          "options": { "root": "apps/java-api" }
         },
         "serve": {
           "executor": "@nxrocks/nx-spring-boot:serve",
-          "options": {
-            "root": "apps/java-api"
-          }
+          "options": { "root": "apps/java-api" }
         },
         "buildJar": {
           "executor": "@nxrocks/nx-spring-boot:buildJar",
-          "options": {
-            "root": "apps/java-api"
-          }
+          "options": { "root": "apps/java-api" }
         },
         "buildWar": {
           "executor": "@nxrocks/nx-spring-boot:buildWar",
-          "options": {
-            "root": "apps/java-api"
-          }
+          "options": { "root": "apps/java-api" }
         },
         "buildImage": {
           "executor": "@nxrocks/nx-spring-boot:buildImage",
-          "options": {
-            "root": "apps/java-api"
-          }
+          "options": { "root": "apps/java-api" }
         },
         "buildInfo": {
           "executor": "@nxrocks/nx-spring-boot:buildInfo",
-          "options": {
-            "root": "apps/java-api"
-          }
-        }
-      }
-    },
-    "react-student-app": {
-      "root": "apps/react-student-app",
-      "sourceRoot": "apps/react-student-app/src",
-      "projectType": "application",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/web:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/apps/react-student-app",
-            "index": "apps/react-student-app/src/index.html",
-            "main": "apps/react-student-app/src/main.tsx",
-            "polyfills": "apps/react-student-app/src/polyfills.ts",
-            "tsConfig": "apps/react-student-app/tsconfig.app.json",
-            "assets": [
-              "apps/react-student-app/src/favicon.ico",
-              "apps/react-student-app/src/assets"
-            ],
-            "styles": [
-              "apps/react-student-app/src/styles.scss"
-            ],
-            "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/react-student-app/src/environments/environment.ts",
-                  "with": "apps/react-student-app/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "react-student-app:build"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "react-student-app:build:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/react-student-app/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/react-student-app"
-          ],
-          "options": {
-            "jestConfig": "apps/react-student-app/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "react-student-app-e2e": {
-      "root": "apps/react-student-app-e2e",
-      "sourceRoot": "apps/react-student-app-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/react-student-app-e2e/cypress.json",
-            "tsConfig": "apps/react-student-app-e2e/tsconfig.e2e.json",
-            "devServerTarget": "react-student-app:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "react-student-app:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/react-student-app-e2e/**/*.{js,ts}"
-            ]
-          }
-        }
-      }
-    },
-    "angular-student-app": {
-      "projectType": "application",
-      "root": "apps/angular-student-app",
-      "sourceRoot": "apps/angular-student-app/src",
-      "prefix": "app-sandbox",
-      "targets": {
-        "build": {
-          "executor": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/angular-student-app",
-            "index": "apps/angular-student-app/src/index.html",
-            "main": "apps/angular-student-app/src/main.ts",
-            "polyfills": "apps/angular-student-app/src/polyfills.ts",
-            "tsConfig": "apps/angular-student-app/tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              "apps/angular-student-app/src/favicon.ico",
-              "apps/angular-student-app/src/assets"
-            ],
-            "styles": [
-              "apps/angular-student-app/src/styles.css"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/angular-student-app/src/environments/environment.ts",
-                  "with": "apps/angular-student-app/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "executor": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "angular-student-app:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "angular-student-app:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "executor": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "angular-student-app:build"
-          }
-        },
-        "lint": {
-          "executor": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/angular-student-app/tsconfig.app.json",
-              "apps/angular-student-app/tsconfig.spec.json",
-              "apps/angular-student-app/tsconfig.editor.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/angular-student-app/**/*"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/angular-student-app"
-          ],
-          "options": {
-            "jestConfig": "apps/angular-student-app/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "angular-student-app-e2e": {
-      "root": "apps/angular-student-app-e2e",
-      "sourceRoot": "apps/angular-student-app-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/angular-student-app-e2e/cypress.json",
-            "tsConfig": "apps/angular-student-app-e2e/tsconfig.e2e.json",
-            "devServerTarget": "angular-student-app:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "angular-student-app:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/angular-student-app-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/angular-student-app-e2e/**/*"
-            ]
-          }
+          "options": { "root": "apps/java-api" }
         }
       }
     },
@@ -290,51 +53,35 @@
       "targets": {
         "run": {
           "executor": "@nxrocks/nx-spring-boot:run",
-          "options": {
-            "root": "apps/test-java-app"
-          }
+          "options": { "root": "apps/test-java-app" }
         },
         "serve": {
           "executor": "@nxrocks/nx-spring-boot:serve",
-          "options": {
-            "root": "apps/test-java-app"
-          }
+          "options": { "root": "apps/test-java-app" }
         },
         "test": {
           "executor": "@nxrocks/nx-spring-boot:test",
-          "options": {
-            "root": "apps/test-java-app"
-          }
+          "options": { "root": "apps/test-java-app" }
         },
         "clean": {
           "executor": "@nxrocks/nx-spring-boot:clean",
-          "options": {
-            "root": "apps/test-java-app"
-          }
+          "options": { "root": "apps/test-java-app" }
         },
         "buildJar": {
           "executor": "@nxrocks/nx-spring-boot:buildJar",
-          "options": {
-            "root": "apps/test-java-app"
-          }
+          "options": { "root": "apps/test-java-app" }
         },
         "buildWar": {
           "executor": "@nxrocks/nx-spring-boot:buildWar",
-          "options": {
-            "root": "apps/test-java-app"
-          }
+          "options": { "root": "apps/test-java-app" }
         },
         "buildImage": {
           "executor": "@nxrocks/nx-spring-boot:buildImage",
-          "options": {
-            "root": "apps/test-java-app"
-          }
+          "options": { "root": "apps/test-java-app" }
         },
         "buildInfo": {
           "executor": "@nxrocks/nx-spring-boot:buildInfo",
-          "options": {
-            "root": "apps/test-java-app"
-          }
+          "options": { "root": "apps/test-java-app" }
         }
       }
     },
@@ -345,9 +92,7 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/test-react-app",
             "index": "apps/test-react-app/src/index.html",
@@ -358,9 +103,7 @@
               "apps/test-react-app/src/favicon.ico",
               "apps/test-react-app/src/assets"
             ],
-            "styles": [
-              "apps/test-react-app/src/styles.css"
-            ],
+            "styles": ["apps/test-react-app/src/styles.css"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -391,28 +134,20 @@
         },
         "serve": {
           "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "test-react-app:build"
-          },
+          "options": { "buildTarget": "test-react-app:build" },
           "configurations": {
-            "production": {
-              "buildTarget": "test-react-app:build:production"
-            }
+            "production": { "buildTarget": "test-react-app:build:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/test-react-app/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["apps/test-react-app/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/test-react-app"
-          ],
+          "outputs": ["coverage/apps/test-react-app"],
           "options": {
             "jestConfig": "apps/test-react-app/jest.config.js",
             "passWithNoTests": true
@@ -440,43 +175,9 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/test-react-app-e2e/**/*.js"
-            ]
-          }
+          "options": { "lintFilePatterns": ["apps/test-react-app-e2e/**/*.js"] }
         }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "scss"
-      },
-      "library": {
-        "style": "scss",
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "css"
-    }
-  },
-  "defaultProject": "react-student-app"
+  }
 }

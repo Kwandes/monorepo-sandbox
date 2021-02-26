@@ -19,4 +19,4 @@ jobs:
         # Install the apps using npm ci (ensures a clean install) and run the test target for ci (skips the NX cache ensuring a clean run)
         run: |
           npm ci
-          npm test:ci
+          npm run test:ci

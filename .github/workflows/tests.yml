@@ -14,10 +14,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12'
-
-      - name: Change permission of mvnw file to allow execution
-        run: chmod +x apps/java-api/mvnw
-
+      
       - name: Install and test the applications
         # Install the apps using npm ci (ensures a clean install) and run the test target for ci (skips the NX cache ensuring a clean run)
         run: |

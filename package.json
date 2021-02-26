@@ -13,6 +13,7 @@
     "build:react-student-app": "nx build react-student-app",
     "build:angular-student-app": "nx build angular-student-app",
     "test": "nx run-many --all --target=test",
+    "test:ci": "nx run-many --all --target=test --skip-nx-cache",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
     "affected:apps": "nx affected:apps",

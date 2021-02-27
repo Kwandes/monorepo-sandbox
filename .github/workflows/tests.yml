@@ -1,7 +1,9 @@
 # Continuos Integration workflow for testing pushed commits and pull requests
 name: CI Tests
 
-on: [push, pull_request]
+on:
+  [push, pull_request]
+  workflow_dispatch:
 
 jobs:
   test:

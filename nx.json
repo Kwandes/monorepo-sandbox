@@ -1,4 +1,6 @@
 {
+  "npmScope": "monorepo-sandbox",
+  "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "workspace.json": "*",
     "package.json": { "dependencies": "*", "devDependencies": "*" },
@@ -7,26 +9,15 @@
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": { "defaultBase": "master" },
-  "npmScope": "app-sandbox",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
-      "options": {
-        "accessToken": "ZWE5NmQ5NzAtNDJlMy00MmE3LWFhMWEtZDk4MzMwOTY5OTdkfHJlYWQtd3JpdGU=",
-        "cacheableOperations": ["build", "test", "lint", "e2e"],
-        "canTrackAnalytics": false,
-        "showUsageWarnings": true
-      }
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
   "projects": {
-    "java-api": { "tags": [] },
-    "test-java-app": { "tags": [] },
-    "test-react-app": { "tags": [] },
-    "test-react-app-e2e": {
-      "tags": [],
-      "implicitDependencies": ["test-react-app"]
-    }
+    "api": { "tags": [] },
+    "webstore": { "tags": [] },
+    "webstore-e2e": { "tags": [], "implicitDependencies": ["webstore"] }
   }
 }

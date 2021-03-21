@@ -1,183 +1,199 @@
 {
   "version": 2,
-  "cli": { "defaultCollection": "@nrwl/react" },
-  "generators": {
-    "@nrwl/react": {
-      "application": { "style": "scss", "linter": "eslint", "babel": true },
-      "component": { "style": "scss" },
-      "library": { "style": "scss", "linter": "eslint" }
-    },
-    "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": { "unitTestRunner": "jest" },
-    "@nrwl/angular:component": { "style": "css" }
-  },
   "projects": {
-    "java-api": {
+    "api": {
       "projectType": "application",
-      "root": "apps/java-api",
-      "sourceRoot": "apps/java-api/src",
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
       "targets": {
         "run": {
           "executor": "@nxrocks/nx-spring-boot:run",
-          "options": { "root": "apps/java-api" }
+          "options": {
+            "root": "apps/api"
+          }
         },
         "serve": {
           "executor": "@nxrocks/nx-spring-boot:serve",
-          "options": { "root": "apps/java-api" }
-        },
-        "buildJar": {
-          "executor": "@nxrocks/nx-spring-boot:buildJar",
-          "options": { "root": "apps/java-api" }
-        },
-        "buildWar": {
-          "executor": "@nxrocks/nx-spring-boot:buildWar",
-          "options": { "root": "apps/java-api" }
-        },
-        "buildImage": {
-          "executor": "@nxrocks/nx-spring-boot:buildImage",
-          "options": { "root": "apps/java-api" }
-        },
-        "buildInfo": {
-          "executor": "@nxrocks/nx-spring-boot:buildInfo",
-          "options": { "root": "apps/java-api" }
-        }
-      }
-    },
-    "test-java-app": {
-      "projectType": "application",
-      "root": "apps/test-java-app",
-      "sourceRoot": "apps/test-java-app/src",
-      "targets": {
-        "run": {
-          "executor": "@nxrocks/nx-spring-boot:run",
-          "options": { "root": "apps/test-java-app" }
-        },
-        "serve": {
-          "executor": "@nxrocks/nx-spring-boot:serve",
-          "options": { "root": "apps/test-java-app" }
+          "options": {
+            "root": "apps/api"
+          }
         },
         "test": {
           "executor": "@nxrocks/nx-spring-boot:test",
-          "options": { "root": "apps/test-java-app" }
+          "options": {
+            "root": "apps/api"
+          }
         },
         "clean": {
           "executor": "@nxrocks/nx-spring-boot:clean",
-          "options": { "root": "apps/test-java-app" }
+          "options": {
+            "root": "apps/api"
+          }
         },
         "buildJar": {
           "executor": "@nxrocks/nx-spring-boot:buildJar",
-          "options": { "root": "apps/test-java-app" }
+          "options": {
+            "root": "apps/api"
+          }
         },
         "buildWar": {
           "executor": "@nxrocks/nx-spring-boot:buildWar",
-          "options": { "root": "apps/test-java-app" }
+          "options": {
+            "root": "apps/api"
+          }
         },
         "buildImage": {
           "executor": "@nxrocks/nx-spring-boot:buildImage",
-          "options": { "root": "apps/test-java-app" }
+          "options": {
+            "root": "apps/api"
+          }
         },
         "buildInfo": {
           "executor": "@nxrocks/nx-spring-boot:buildInfo",
-          "options": { "root": "apps/test-java-app" }
+          "options": {
+            "root": "apps/api"
+          }
         }
       }
     },
-    "test-react-app": {
-      "root": "apps/test-react-app",
-      "sourceRoot": "apps/test-react-app/src",
+    "webstore": {
       "projectType": "application",
+      "root": "apps/webstore",
+      "sourceRoot": "apps/webstore/src",
+      "prefix": "monorepo-sandbox",
       "targets": {
         "build": {
-          "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "executor": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/test-react-app",
-            "index": "apps/test-react-app/src/index.html",
-            "main": "apps/test-react-app/src/main.js",
-            "polyfills": "apps/test-react-app/src/polyfills.js",
-            "tsConfig": "apps/test-react-app/tsconfig.app.json",
+            "outputPath": "dist/apps/webstore",
+            "index": "apps/webstore/src/index.html",
+            "main": "apps/webstore/src/main.ts",
+            "polyfills": "apps/webstore/src/polyfills.ts",
+            "tsConfig": "apps/webstore/tsconfig.app.json",
+            "aot": true,
             "assets": [
-              "apps/test-react-app/src/favicon.ico",
-              "apps/test-react-app/src/assets"
+              "apps/webstore/src/favicon.ico",
+              "apps/webstore/src/assets"
             ],
-            "styles": ["apps/test-react-app/src/styles.css"],
-            "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
+            "styles": [
+              "apps/webstore/src/styles.css"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/test-react-app/src/environments/environment.js",
-                  "with": "apps/test-react-app/src/environments/environment.prod.js"
+                  "replace": "apps/webstore/src/environments/environment.ts",
+                  "with": "apps/webstore/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
+              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
           }
         },
         "serve": {
-          "executor": "@nrwl/web:dev-server",
-          "options": { "buildTarget": "test-react-app:build" },
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "webstore:build"
+          },
           "configurations": {
-            "production": { "buildTarget": "test-react-app:build:production" }
+            "production": {
+              "browserTarget": "webstore:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "webstore:build"
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/test-react-app/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/webstore/src/**/*.ts",
+              "apps/webstore/src/**/*.html"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/test-react-app"],
+          "outputs": [
+            "coverage/apps/webstore"
+          ],
           "options": {
-            "jestConfig": "apps/test-react-app/jest.config.js",
+            "jestConfig": "apps/webstore/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "test-react-app-e2e": {
-      "root": "apps/test-react-app-e2e",
-      "sourceRoot": "apps/test-react-app-e2e/src",
+    "webstore-e2e": {
+      "root": "apps/webstore-e2e",
+      "sourceRoot": "apps/webstore-e2e/src",
       "projectType": "application",
       "targets": {
         "e2e": {
           "executor": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/test-react-app-e2e/cypress.json",
-            "tsConfig": "apps/test-react-app-e2e/tsconfig.e2e.json",
-            "devServerTarget": "test-react-app:serve"
+            "cypressConfig": "apps/webstore-e2e/cypress.json",
+            "tsConfig": "apps/webstore-e2e/tsconfig.e2e.json",
+            "devServerTarget": "webstore:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "test-react-app:serve:production"
+              "devServerTarget": "webstore:serve:production"
             }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["apps/test-react-app-e2e/**/*.js"] }
+          "options": {
+            "lintFilePatterns": [
+              "apps/webstore-e2e/**/*.{js,ts}"
+            ]
+          }
         }
       }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "css"
     }
   }
 }

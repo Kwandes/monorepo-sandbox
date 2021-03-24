@@ -65,11 +65,12 @@
       <optional>true</optional>
     </dependency>
 
-    <dependency>
+    <!-- Commenting okta out for now while the core functionality is being developed -->
+    <!--<dependency>
       <groupId>com.okta.spring</groupId>
       <artifactId>okta-spring-boot-starter</artifactId>
       <version>1.2.1</version>
-    </dependency>
+    </dependency>-->
   </dependencies>
 
   <build>

@@ -27,7 +27,7 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <scope>test</scope>
+      <scope>runtime</scope> <!-- It is used by normal code too in the ApiApplication-java -->
     </dependency>
 
     <dependency>

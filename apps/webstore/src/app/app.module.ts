@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { OKTA_CONFIG, OktaAuthModule } from '@okta/okta-angular';
+import { oktaConfig } from './okta.config';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,8 +26,9 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabled' }),
+    OktaAuthModule,
   ],
-  providers: [],
+  providers: [{ provide: OKTA_CONFIG, useValue: oktaConfig },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

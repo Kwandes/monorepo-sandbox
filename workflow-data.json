@@ -1,8 +1,7 @@
 {
   "inputs": {
-    "name": "monalisa",
-    "MESSAGE": "testy",
-    "USE-EMOJI": true,
-    "ENVIRONMENT": "TEST"
+    "deployApi": false,
+    "deployFrontend": false,
+    "deployTunnel": true
   }
 }

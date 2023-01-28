@@ -11,7 +11,7 @@ on:
       #     - cschleiden
       # message:
       #   required: true
-      deployAPI:
+      deployApi:
         type: boolean
         description: Deploy the API app
         default: true
@@ -27,9 +27,26 @@ on:
       #   type: environment
 
 jobs:
-  greet:
+  api:
+    if: github.event.inputs.deployApi == true
     runs-on: ubuntu-latest
 
     steps:
       - name: Send greeting
-        run: echo "test - ${{ github.event.inputs.message }} ${{ fromJSON('["", ""]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+        run: echo "API Deployed"
+
+  frontend:
+    if: github.event.inputs.deployFrontend == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send greeting
+        run: echo "Frontend Deployed"
+
+  tunnel:
+    if: github.event.inputs.deployTunnel == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send greeting
+        run: echo "Tunnel Deployed"

@@ -26,25 +26,25 @@ on:
 
 jobs:
   api:
-    if: github.event.inputs.deployApi == true
+    if: ${{ inputs.deployApi }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Send greeting
-        run: echo "API deployed to ${{ github.event.inputs.environment }}"
+        run: echo "API deployed to ${{ inputs.environment }}"
 
   frontend:
-    if: github.event.inputs.deployFrontend == true
+    if: ${{ inputs.deployFrontend }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Send greeting
-        run: echo "Frontend deployed to ${{ github.event.inputs.environment }}"
+        run: echo "Frontend deployed to ${{ inputs.environment }}"
 
   tunnel:
-    if: github.event.inputs.deployTunnel == true
+    if: ${{ inputs.deployTunnel }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Send greeting
-        run: echo "Tunnel deployed to ${{ github.event.inputs.environment }}"
+        run: echo "Tunnel deployed to ${{ inputs.environment }}"

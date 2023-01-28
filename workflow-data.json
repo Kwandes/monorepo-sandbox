@@ -1,0 +1,8 @@
+{
+  "inputs": {
+    "name": "monalisa",
+    "MESSAGE": "testy",
+    "USE-EMOJI": true,
+    "ENVIRONMENT": "TEST"
+  }
+}

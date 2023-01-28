@@ -1,0 +1,61 @@
+name: Test workflow dispatch
+
+on:
+  push:
+    branches:
+      - production
+  workflow_dispatch:
+    inputs:
+      deployApi:
+        type: boolean
+        description: Deploy the API app
+        default: true
+      deployFrontend:
+        type: boolean
+        description: Deploy the Frontend app
+        default: true
+      deployTunnel:
+        type: boolean
+        description: Deploy the Tunnel app
+        default: true
+      environment:
+        type: choice
+        description: Which environment to deploy to
+        options:
+          - test
+          - staging
+          - demo
+
+jobs:
+  log-inputs:
+    name: Log workflow inputs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log inputs
+        run: |
+          echo "Branch - $GITHUB_REF"
+          echo "Environment - ${{ inputs.environment }}"
+          echo "DeployApi - ${{ inputs.deployApi }}"
+          echo "DeployFrontend - ${{ inputs.DeployFrontend }}"
+          echo "DeployTunnel - ${{ inputs.deployTunnel }}"
+
+  api:
+    if: ${{ inputs.deployApi }} || $GITHUB_REF##*/ == *"production"*
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send greeting
+        run: echo "API deployed to ${{ inputs.environment }}"
+
+  frontend:
+    if: ${{ inputs.deployFrontend }} || $GITHUB_REF##*/ == *"production"*
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send greeting
+        run: echo "Frontend deployed to ${{ inputs.environment }}"
+
+  tunnel:
+    if: ${{ inputs.deployTunnel }} || $GITHUB_REF##*/ == *"production"*
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send greeting
+        run: echo "Tunnel deployed to ${{ inputs.environment }}"

@@ -1,0 +1,8 @@
+{
+  "inputs": {
+    "deployApi": false,
+    "deployFrontend": false,
+    "deployTunnel": false,
+    "environment": "staging"
+  }
+}

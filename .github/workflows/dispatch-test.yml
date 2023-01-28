@@ -24,7 +24,7 @@ on:
         description: Deploy the Tunnel app
         default: true
       environment:
-        choice: environment
+        choice: choice
         description: Which environment to deploy to
         options:
           - test

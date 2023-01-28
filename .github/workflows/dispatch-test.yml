@@ -25,6 +25,17 @@ on:
           - production
 
 jobs:
+  log-inputs:
+    name: Log workflow inputs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log inputs
+        run: |
+          echo "DeployApi - ${{ inputs.deployApi }}"
+          echo "DeployFrontend - ${{ inputs.DeployFrontend }}"
+          echo "DeployTunnel - ${{ inputs.deployTunnel }}"
+          echo "Environment - ${{ inputs.environment }}"
   api:
     if: ${{ inputs.deployApi }}
     runs-on: ubuntu-latest

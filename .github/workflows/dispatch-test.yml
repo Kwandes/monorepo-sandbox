@@ -3,19 +3,28 @@ name: Test workflow dispatch
 on:
   workflow_dispatch:
     inputs:
-      name:
-        type: choice
-        description: Who to greet
-        options:
-          - monalisa
-          - cschleiden
-      message:
-        required: true
-      use-emoji:
+      # name:
+      #   type: choice
+      #   description: Who to greet
+      #   options:
+      #     - monalisa
+      #     - cschleiden
+      # message:
+      #   required: true
+      deployAPI:
         type: boolean
-        description: Include  emojis
-      environment:
-        type: environment
+        description: Deploy the API app
+        default: true
+      deployFrontend:
+        type: boolean
+        description: Deploy the Frontend app
+        default: true
+      deployTunnel:
+        type: boolean
+        description: Deploy the Tunnel app
+        default: true
+      # environment:
+      #   type: environment
 
 jobs:
   greet:

@@ -23,8 +23,14 @@ on:
         type: boolean
         description: Deploy the Tunnel app
         default: true
-      # environment:
-      #   type: environment
+      environment:
+        choice: environment
+        description: Which environment to deploy to
+        options:
+          - test
+          - staging
+          - demo
+          - production
 
 jobs:
   api:
@@ -33,7 +39,7 @@ jobs:
 
     steps:
       - name: Send greeting
-        run: echo "API Deployed"
+        run: echo "API deployed to ${{ github.event.inputs.environment }}"
 
   frontend:
     if: github.event.inputs.deployFrontend == true
@@ -41,7 +47,7 @@ jobs:
 
     steps:
       - name: Send greeting
-        run: echo "Frontend Deployed"
+        run: echo "Frontend deployed to ${{ github.event.inputs.environment }}"
 
   tunnel:
     if: github.event.inputs.deployTunnel == true
@@ -49,4 +55,4 @@ jobs:
 
     steps:
       - name: Send greeting
-        run: echo "Tunnel Deployed"
+        run: echo "Tunnel deployed to ${{ github.event.inputs.environment }}"

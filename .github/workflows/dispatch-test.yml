@@ -3,14 +3,6 @@ name: Test workflow dispatch
 on:
   workflow_dispatch:
     inputs:
-      # name:
-      #   type: choice
-      #   description: Who to greet
-      #   options:
-      #     - monalisa
-      #     - cschleiden
-      # message:
-      #   required: true
       deployApi:
         type: boolean
         description: Deploy the API app
@@ -34,7 +26,7 @@ on:
 
 jobs:
   api:
-    if: github.event.inputs.deployApi == true
+    if: ${{inputs.deployApi}} == true
     runs-on: ubuntu-latest
 
     steps:
@@ -42,7 +34,7 @@ jobs:
         run: echo "API deployed to ${{ github.event.inputs.environment }}"
 
   frontend:
-    if: github.event.inputs.deployFrontend == true
+    if: ${{inputs.deployFrontend}} == true
     runs-on: ubuntu-latest
 
     steps:
@@ -50,7 +42,7 @@ jobs:
         run: echo "Frontend deployed to ${{ github.event.inputs.environment }}"
 
   tunnel:
-    if: github.event.inputs.deployTunnel == true
+    if: ${{inputs.deployTunnel}} == true
     runs-on: ubuntu-latest
 
     steps:

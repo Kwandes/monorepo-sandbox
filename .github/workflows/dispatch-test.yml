@@ -46,6 +46,19 @@ jobs:
       - name: Send greeting
         run: echo "API deployed to ${{ inputs.environment }}"
 
+      - name: Log key
+        run: echo "Host ${{ secrets.SSH_HOST }} | Username ${{ secrets.SSH_USERNAME }} | Key ${{ secrets.SSH_KEY }}"
+
+      - name: Execute command through SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            date >> log
+            echo "SSHed in via the workflow" >> log
+
   frontend:
     if: ${{ inputs.deployFrontend }} || $GITHUB_REF##*/ == *"production"*
     runs-on: ubuntu-latest

@@ -49,15 +49,17 @@ jobs:
       - name: Log key
         run: echo "Host ${{ secrets.SSH_HOST }} | Username ${{ secrets.SSH_USERNAME }} | Key ${{ secrets.SSH_KEY }}"
 
-      - name: Execute command through SSH
-        uses: garygrossgarten/github-action-ssh@release
+      - name: SSH Agent setup
+        uses: webfactory/ssh-agent
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          privateKey: ${{ secrets.SSH_KEY }}
-          command: |
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: Execute command through SSH
+        run: |
+          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << EOF
             date >> log
             echo "SSHed in via the workflow" >> log
+          EOF
 
   frontend:
     if: ${{ inputs.deployFrontend }} || $GITHUB_REF##*/ == *"production"*

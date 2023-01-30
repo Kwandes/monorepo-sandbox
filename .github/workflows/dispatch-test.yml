@@ -50,12 +50,12 @@ jobs:
         run: echo "Host ${{ secrets.SSH_HOST }} | Username ${{ secrets.SSH_USERNAME }} | Key ${{ secrets.SSH_KEY }}"
 
       - name: Execute command through SSH
-        uses: appleboy/ssh-action@master
+        uses: garygrossgarten/github-action-ssh@release
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
+          privateKey: ${{ secrets.SSH_KEY }}
+          command: |
             date >> log
             echo "SSHed in via the workflow" >> log
 

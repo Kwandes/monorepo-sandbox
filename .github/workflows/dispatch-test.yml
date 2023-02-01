@@ -38,15 +38,10 @@ jobs:
           echo "DeployApi - ${{ inputs.deployApi }}"
           echo "DeployFrontend - ${{ inputs.DeployFrontend }}"
           echo "DeployTunnel - ${{ inputs.deployTunnel }}"
-
-      - name: Setup up cache
-        uses: actions/cache/save@v3
-        with:
-          path: |
-            ~/.ssh/deployment.key
-            ~/.ssh/config
-          key: ssh-config
-
+  api:
+    if: ${{ inputs.deployApi }} || $GITHUB_REF##*/ == *"production"*
+    runs-on: ubuntu-latest
+    steps:
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
@@ -64,16 +59,6 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
-  api:
-    if: ${{ inputs.deployApi }} || $GITHUB_REF##*/ == *"production"*
-    runs-on: ubuntu-latest
-    uses: actions/cache/restore@v3
-    with:
-      path: |
-        ~/.ssh/deployment.key
-        ~/.ssh/config
-      key: ssh-config
-    steps:
       - name: SSH into the server and perform command
         run: ssh deployment 'date >> log && echo "SSHed in via the workflow" >> log'
 

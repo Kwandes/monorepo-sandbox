@@ -43,19 +43,70 @@ jobs:
     if: ${{ inputs.deployApi }} || $GITHUB_REF##*/ == *"production"*
     runs-on: ubuntu-latest
     steps:
-      - name: Send greeting
-        run: echo "API deployed to ${{ inputs.environment }}"
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/deployment.key
+          chmod 600 ~/.ssh/deployment.key
+          cat >>~/.ssh/config <<END
+          Host deployment
+            HostName $SSH_HOST
+            User $SSH_USERNAME
+            IdentityFile ~/.ssh/deployment.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: "${{ inputs.environment != null &&  inputs.environment && '.' }}${{ secrets.SSH_HOST }}"
+
+      - name: SSH into the server and perform command
+        run: ssh deployment 'date >> log && echo "Api deployment triggered" >> log'
 
   frontend:
     if: ${{ inputs.deployFrontend }} || $GITHUB_REF##*/ == *"production"*
     runs-on: ubuntu-latest
     steps:
-      - name: Send greeting
-        run: echo "Frontend deployed to ${{ inputs.environment }}"
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/deployment.key
+          chmod 600 ~/.ssh/deployment.key
+          cat >>~/.ssh/config <<END
+          Host deployment
+            HostName $SSH_HOST
+            User $SSH_USERNAME
+            IdentityFile ~/.ssh/deployment.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: "${{ inputs.environment }}.${{ secrets.SSH_HOST }}"
+
+      - name: SSH into the server and perform command
+        run: ssh deployment 'date >> log && echo "Frontend deployment triggered" >> log'
 
   tunnel:
     if: ${{ inputs.deployTunnel }} || $GITHUB_REF##*/ == *"production"*
     runs-on: ubuntu-latest
     steps:
-      - name: Send greeting
-        run: echo "Tunnel deployed to ${{ inputs.environment }}"
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/deployment.key
+          chmod 600 ~/.ssh/deployment.key
+          cat >>~/.ssh/config <<END
+          Host deployment
+            HostName $SSH_HOST
+            User $SSH_USERNAME
+            IdentityFile ~/.ssh/deployment.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: "${{ inputs.environment }}.${{ secrets.SSH_HOST }}"
+
+      - name: SSH into the server and perform command
+        run: ssh deployment 'date >> log && echo "Tunnel deployment triggered" >> log'

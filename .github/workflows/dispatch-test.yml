@@ -50,7 +50,7 @@ jobs:
         run: |
           if [ ${{ github.ref }} == 'refs/heads/production' ]; then
             echo "Is production branch"
-            echo "hostname=${{github.secrets.SSH_HOST}}" >> $GITHUB_OUTPUT
+            echo "hostname=${{secrets.SSH_HOST}}" >> $GITHUB_OUTPUT
           else
             echo "Is not production branch"
             echo "hostname=${{inputs.environment}}.${{secrets.SSH_HOST}}" >> $GITHUB_OUTPUT
@@ -77,7 +77,7 @@ jobs:
         env:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
-          SSH_HOST: ${{ needs.setup.outputs.hostname }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
 
       - name: SSH into the server and perform command
         run: ssh deployment 'date >> log && echo "Api deployment triggered" >> log'

@@ -30,8 +30,6 @@ jobs:
   log-inputs:
     name: Log workflow inputs
     runs-on: ubuntu-latest
-    with:
-      hostname: ${{secrets.SSH_HOST}}
     steps:
       - name: Log inputs
         run: |
@@ -48,6 +46,8 @@ jobs:
       hostname: ${{ steps.set-hostname.outputs.hostname }}
     steps:
       - name: Set hostname variable based on environment
+        with:
+          hostname: ${{secrets.SSH_HOST}}
         id: set-hostname
         run: |
           if [ ${{ github.ref }} == 'refs/heads/production' ]; then

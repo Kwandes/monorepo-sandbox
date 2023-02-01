@@ -30,11 +30,6 @@ jobs:
   log-inputs:
     name: Log workflow inputs
     runs-on: ubuntu-latest
-    uses: actions/cache/save@v3
-    with:
-      - ~/.ssh/deployment.key
-      - ~/.ssh/config
-      key: ssh-config
     steps:
       - name: Log inputs
         run: |
@@ -45,6 +40,12 @@ jobs:
           echo "DeployTunnel - ${{ inputs.deployTunnel }}"
 
       - name: Configure SSH
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            ~/.ssh/deployment.key
+            ~/.ssh/config
+          key: ssh-config
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/deployment.key

@@ -46,16 +46,16 @@ jobs:
       hostname: ${{ steps.set-hostname.outputs.hostname }}
     steps:
       - name: Set hostname variable based on environment
-        with:
-          hostname: ${{secrets.SSH_HOST}}
+        env:
+          HOSTNAME: ${{ secrets.SSH_HOST }}
         id: set-hostname
         run: |
           if [ ${{ github.ref }} == 'refs/heads/production' ]; then
             echo "Is production branch"
-            echo "hostname=${{inputs.hostname}}" >> $GITHUB_OUTPUT
+            echo "hostname=$HOSTANME" >> $GITHUB_OUTPUT
           else
             echo "Is not production branch"
-            echo "hostname=${{inputs.environment}}.${{inputs.hostname}}" >> $GITHUB_OUTPUT
+            echo "hostname=${{inputs.environment}}.$HOSTANME" >> $GITHUB_OUTPUT
           fi
         shell: bash
 

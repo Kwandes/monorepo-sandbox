@@ -53,7 +53,7 @@ jobs:
             echo "hostname=${{github.secrets.SSH_HOST}}" >> $GITHUB_OUTPUT
           else
             echo "Is not production branch"
-            echo "hostname=${{inputs.environment}}.${{github.secrets.SSH_HOST}}" >> $GITHUB_OUTPUT
+            echo "hostname=${{inputs.environment}}.${{secrets.SSH_HOST}}" >> $GITHUB_OUTPUT
           fi
         shell: bash
 

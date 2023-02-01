@@ -30,6 +30,11 @@ jobs:
   log-inputs:
     name: Log workflow inputs
     runs-on: ubuntu-latest
+    uses: actions/cache/save@v3
+    with:
+      - ~/.ssh/deployment.key
+      - ~/.ssh/config
+      key: ssh-config
     steps:
       - name: Log inputs
         run: |
@@ -59,18 +64,15 @@ jobs:
   api:
     if: ${{ inputs.deployApi }} || $GITHUB_REF##*/ == *"production"*
     runs-on: ubuntu-latest
+    uses: actions/cache/restore@v3
+    with:
+      path: |
+        ~/.ssh/deployment.key
+        ~/.ssh/config
+      key: ssh-config
     steps:
       - name: SSH into the server and perform command
         run: ssh deployment 'date >> log && echo "SSHed in via the workflow" >> log'
-      # - name: Execute command through SSH
-      #   uses: webfactory/ssh-agent
-      #   with:
-      #     ssh-private-key: ${{ secrets.SSH_KEY }}
-      #   run: |
-      #     ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << EOF
-      #       date >> log
-      #       echo "SSHed in via the workflow" >> log
-      #     EOF
 
   frontend:
     if: ${{ inputs.deployFrontend }} || $GITHUB_REF##*/ == *"production"*

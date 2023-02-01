@@ -39,8 +39,27 @@ jobs:
           echo "DeployFrontend - ${{ inputs.DeployFrontend }}"
           echo "DeployTunnel - ${{ inputs.deployTunnel }}"
 
+  setup:
+    runs-on: ubuntu-latest
+    name: Setup variables
+    outputs:
+      hostname: ${{ steps.set-hostname.outputs.hostname }}
+    steps:
+      - name: Set hostname variable based on environment
+        id: set-hostname
+        run: |
+          if [ ${{ github.ref }} == 'refs/heads/production' ]; then
+            echo "Is production branch"
+            echo "hostname=${{secrets.SSH_HOST}}" >> $GITHUB_OUTPUT
+          else
+            echo "Is not production branch"
+            echo "hostname=${{inputs.environment}}.${{secrets.SSH_HOST}}" >> $GITHUB_OUTPUT
+          fi
+        shell: bash
+
   api:
     if: ${{ inputs.deployApi }} || $GITHUB_REF##*/ == *"production"*
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Configure SSH
@@ -58,13 +77,14 @@ jobs:
         env:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
-          SSH_HOST: "${{ inputs.environment != null &&  inputs.environment && '.' }}${{ secrets.SSH_HOST }}"
+          SSH_HOST: ${{ needs.setup.outputs.hostname }}
 
       - name: SSH into the server and perform command
         run: ssh deployment 'date >> log && echo "Api deployment triggered" >> log'
 
   frontend:
     if: ${{ inputs.deployFrontend }} || $GITHUB_REF##*/ == *"production"*
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Configure SSH
@@ -82,13 +102,14 @@ jobs:
         env:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
-          SSH_HOST: "${{ inputs.environment }}.${{ secrets.SSH_HOST }}"
+          SSH_HOST: ${{ needs.setup.outputs.hostname }}
 
       - name: SSH into the server and perform command
         run: ssh deployment 'date >> log && echo "Frontend deployment triggered" >> log'
 
   tunnel:
     if: ${{ inputs.deployTunnel }} || $GITHUB_REF##*/ == *"production"*
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Configure SSH
@@ -106,7 +127,7 @@ jobs:
         env:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
-          SSH_HOST: "${{ inputs.environment }}.${{ secrets.SSH_HOST }}"
+          SSH_HOST: ${{ needs.setup.outputs.hostname }}
 
       - name: SSH into the server and perform command
         run: ssh deployment 'date >> log && echo "Tunnel deployment triggered" >> log'

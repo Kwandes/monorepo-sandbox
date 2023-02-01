@@ -50,10 +50,10 @@ jobs:
         run: |
           if [ ${{ github.ref }} == 'refs/heads/production' ]; then
             echo "Is production branch"
-            echo "hostname=${{ secrets.SSH_HOST}}" >> $GITHUB_OUTPUT
+            echo "hostname=$(secrets.SSH_HOST)" >> $GITHUB_OUTPUT
           else
             echo "Is not production branch"
-            echo "hostname=${{inputs.environment}}.${{secrets.SSH_HOST}}" >> $GITHUB_OUTPUT
+            echo "hostname=$(inputs.environment).$(secrets.SSH_HOST)" >> $GITHUB_OUTPUT
           fi
         shell: bash
 

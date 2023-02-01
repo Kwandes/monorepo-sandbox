@@ -39,13 +39,15 @@ jobs:
           echo "DeployFrontend - ${{ inputs.DeployFrontend }}"
           echo "DeployTunnel - ${{ inputs.deployTunnel }}"
 
-      - name: Configure SSH
+      - name: Setup up cache
         uses: actions/cache/save@v3
         with:
           path: |
             ~/.ssh/deployment.key
             ~/.ssh/config
           key: ssh-config
+
+      - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/deployment.key

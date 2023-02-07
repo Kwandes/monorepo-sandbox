@@ -83,7 +83,7 @@ jobs:
       #   run: ssh deployment 'date >> log && echo "Api deployment triggered" >> log'
 
   frontend:
-    if: ${{ inputs.deployFrontend == true  || github.ref  == 'refs/heads/production' }}
+    if: ${{ inputs.deployFrontend  || github.ref  == 'refs/heads/production' }}
     needs: setup
     runs-on: ubuntu-latest
     steps:

@@ -79,8 +79,8 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ needs.setup.outputs.hostname }}
 
-      - name: SSH into the server and perform command
-        run: ssh deployment 'date >> log && echo "Api deployment triggered" >> log'
+      # - name: SSH into the server and perform command
+      #   run: ssh deployment 'date >> log && echo "Api deployment triggered" >> log'
 
   frontend:
     if: ${{ inputs.deployFrontend }} || $GITHUB_REF##*/ == *"production"*
@@ -104,8 +104,8 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ needs.setup.outputs.hostname }}
 
-      - name: SSH into the server and perform command
-        run: ssh deployment 'date >> log && echo "Frontend deployment triggered" >> log'
+      # - name: SSH into the server and perform command
+      #   run: ssh deployment 'date >> log && echo "Frontend deployment triggered" >> log'
 
   tunnel:
     if: ${{ inputs.deployTunnel }} || $GITHUB_REF##*/ == *"production"*
@@ -129,5 +129,5 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ needs.setup.outputs.hostname }}
 
-      - name: SSH into the server and perform command
-        run: ssh deployment 'date >> log && echo "Tunnel deployment triggered" >> log'
+      # - name: SSH into the server and perform command
+      #   run: ssh deployment 'date >> log && echo "Tunnel deployment triggered" >> log'

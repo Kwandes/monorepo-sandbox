@@ -58,7 +58,7 @@ jobs:
         shell: bash
 
   api:
-    if: ${{ inputs.deployApi == true }}
+    if: ${{ inputs.deployApi || github.ref  == 'refs/heads/production' }}
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -108,7 +108,7 @@ jobs:
       #   run: ssh deployment 'date >> log && echo "Frontend deployment triggered" >> log'
 
   tunnel:
-    if: ${{ inputs.deployTunnel }}
+    if: ${{ inputs.deployTunnel || github.ref  == 'refs/heads/production' }}
     needs: setup
     runs-on: ubuntu-latest
     steps:

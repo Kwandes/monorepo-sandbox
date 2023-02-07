@@ -58,7 +58,7 @@ jobs:
         shell: bash
 
   api:
-    if: ${{ inputs.deployApi }} || $GITHUB_REF##*/ == *"production"*
+    if: ${{ inputs.deployApi == true }}
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -79,11 +79,11 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ needs.setup.outputs.hostname }}
 
-      - name: SSH into the server and perform command
-        run: ssh deployment 'date >> log && echo "Api deployment triggered" >> log'
+      # - name: SSH into the server and perform command
+      #   run: ssh deployment 'date >> log && echo "Api deployment triggered" >> log'
 
   frontend:
-    if: ${{ inputs.deployFrontend }} || $GITHUB_REF##*/ == *"production"*
+    if: ${{ inputs.deployFrontend == true  || github.ref  == 'refs/heads/production' }}
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -104,11 +104,11 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ needs.setup.outputs.hostname }}
 
-      - name: SSH into the server and perform command
-        run: ssh deployment 'date >> log && echo "Frontend deployment triggered" >> log'
+      # - name: SSH into the server and perform command
+      #   run: ssh deployment 'date >> log && echo "Frontend deployment triggered" >> log'
 
   tunnel:
-    if: ${{ inputs.deployTunnel }} || $GITHUB_REF##*/ == *"production"*
+    if: ${{ inputs.deployTunnel }}
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -129,5 +129,5 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ needs.setup.outputs.hostname }}
 
-      - name: SSH into the server and perform command
-        run: ssh deployment 'date >> log && echo "Tunnel deployment triggered" >> log'
+      # - name: SSH into the server and perform command
+      #   run: ssh deployment 'date >> log && echo "Tunnel deployment triggered" >> log'

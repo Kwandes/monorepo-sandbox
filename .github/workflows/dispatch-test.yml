@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Log inputs
         run: |
-          echo "Branch - $GITHUB_REF"
+          echo "Branch - $GITHUB_REF_NAME"
           echo "Environment - ${{ inputs.environment }}"
           echo "DeployApi - ${{ inputs.deployApi }}"
           echo "DeployFrontend - ${{ inputs.DeployFrontend }}"

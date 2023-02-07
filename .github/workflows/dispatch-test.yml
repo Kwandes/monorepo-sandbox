@@ -58,7 +58,7 @@ jobs:
         shell: bash
 
   api:
-    if: ${{ inputs.deployApi }} || $GITHUB_REF##*/ == *"production"*
+    if: ${{ inputs.deployApi == true }} || $GITHUB_REF##*/ == *"production"*
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -83,7 +83,7 @@ jobs:
       #   run: ssh deployment 'date >> log && echo "Api deployment triggered" >> log'
 
   frontend:
-    if: ${{ inputs.deployFrontend }} || $GITHUB_REF##*/ == *"production"*
+    if: ${{ inputs.deployFrontend == true  }} || $GITHUB_REF##*/ == *"production"*
     needs: setup
     runs-on: ubuntu-latest
     steps:
